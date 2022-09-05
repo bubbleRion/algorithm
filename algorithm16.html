@@ -15,7 +15,7 @@
     // root 연결
     const root = document.getElementById("root")
     // 구구단 몇단부터 실행할건지 정하는 숫자
-    let promptNum = 2
+    let count = 2
     // 콘솔로그에 찍을 계산횟수 초기화
     let multiplyCounter = 0
     // 지워진 태그의 숫자 더하는 기록
@@ -23,19 +23,33 @@
     // 5번 누적 체크
     let alertCount = 0
     // Q1 front
-    for (promptNum; promptNum < 10; promptNum++) {
+    function googoo(promptNum1, promptNum2) {
+      // for (promptNum1; promptNum1 < 10; promptNum1++) {
       // 시그마 로직
       let sigma = 0
-      root.innerHTML += `<div>${Math.abs(promptNum.toFixed(1))}단</div>`
-      for (let i = 1; i < 10; i++) {
-        root.innerHTML += `<div>${Math.abs(promptNum.toFixed(1))} 곱하기 ${i}는 ${Math.abs(promptNum.toFixed(1)) * i}!</div>`
+      console.log(`${Math.abs(promptNum1.toFixed(1))}단`)
+      for (let i = 1; i <= promptNum2; i++) {
+        root.innerHTML += `<div>${Math.abs(promptNum1.toFixed(1))} 곱하기 ${i}는 ${Math.abs(promptNum1.toFixed(1)) * i}!</div>`
         multiplyCounter++
-        sigma += promptNum * i
+        sigma += promptNum1 * i
       }
-      root.innerHTML += `시그마 로직 단의 총합계는 ${sigma}입니다`
+      root.innerHTML += "<br>"
+      console.log(`시그마 로직 단의 총합계는 ${sigma}입니다`)
+      // }
+      console.log("멀티플라이 카운터 = " + multiplyCounter)
+
     }
+    function gugudan(column, row) {
+      let a = setInterval(() => {
+        googoo(count, column)
+        count++
+        if (count === row) {
+          clearInterval(a)
+        }
+      }, 1000)
+    }
+    gugudan(10, 10)
     //Q2 back
-    console.log("멀티플라이 카운터 = " + multiplyCounter)
 
     root.addEventListener("click", (e) => {
       alertCount++
